@@ -19,7 +19,7 @@ def cut_video_by_timestamps(input_path, timestamps, output_dir, output_prefix):
         segment = video.subclipped(start_clamped, end_clamped)
         output_path = os.path.join(
             output_dir,
-            f"{output_prefix}_{round(start_clamped)}s_to_{round(end_clamped)}s.mp4"
+            f"{output_prefix}_{idx}_{round(start_clamped)}s_to_{round(end_clamped)}s.mp4"
         )
         segment.write_videofile(output_path, codec="libx264", audio_codec="aac")
         print(f"Saved segment: {output_path}")
