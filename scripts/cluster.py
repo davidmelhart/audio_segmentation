@@ -6,7 +6,7 @@ from sklearn.cluster import KMeans
 video_names = []
 embedding_vectors = []
 
-with open("video_embeddings.jsonl", "r") as f:
+with open("output/embeddings.jsonl", "r") as f:
     for line in f:
         record = json.loads(line)
         video_names.append(record["video"])
@@ -19,6 +19,6 @@ kmeans = KMeans(n_clusters=3, random_state=42)
 cluster_labels = kmeans.fit_predict(embedding_matrix)
 
 # Save cluster assignments
-with open("video_clusters.jsonl", "w") as out_f:
+with open("output/clusters.jsonl", "w") as out_f:
     for video, cluster in zip(video_names, cluster_labels):
         out_f.write(json.dumps({"video": video, "cluster": int(cluster)}) + "\n")
